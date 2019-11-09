@@ -1,0 +1,7 @@
+*.gc*
+*.dSYM
+*.exe
+*.obj
+*.o
+a.out
+remote_farm
