@@ -7,6 +7,12 @@
             "label": "compile",
             "type": "shell",
             "command": "make"
+        },
+        {
+            "label": "rebuild-client",
+            "type": "shell",
+            "command": "cd ./client  && npm install && npm run build"
         }
     ]
+
 }
