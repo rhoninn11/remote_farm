@@ -57,7 +57,7 @@ int main(void)
 
 	while (keep_listening)
 	{
-		mg_mgr_poll(&mgr, 1000);
+		mg_mgr_poll(&mgr, 15);
 	}
 
 	pthread_mutex_destroy(&sin_mutex);
@@ -133,7 +133,7 @@ static void send_sin_value(struct mg_connection *conn)
 	pthread_mutex_unlock(&sin_mutex);
 	char *v_json = create_value_JSON(tsin_value);
 
-	mg_printf(conn, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nContent-Type: application/json\r\n\r\n");
+	mg_printf(conn, "%s", "HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nContent-Type: application/json\r\nAccess-Control-Allow-Origin: *\r\n\r\n");
 	mg_printf_http_chunk(conn, v_json);
 	mg_send_http_chunk(conn, "", 0); /* Send empty chunk, the end of response */
 }
